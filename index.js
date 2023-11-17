@@ -11,6 +11,8 @@ elements.forEach((element) => {
             // on retire tous les éléments de la page
             document.body.removeChild(document.body.firstChild);
         }
+        // on change le titre de la page -> nom de la planète
+        document.title = currentElement;
         // on appelle la fonction qui sert à afficher la page d'info sur l'élément cliqué
         displayElementData(currentElement);
     });
@@ -28,6 +30,7 @@ function displayElementData(id) {
             // créer une liste des propriétés (<ul> -> <li> / <ol> -> <li>)
             for (var key in data) {
                 // on vérifie que la propriété est bien celle de l'objet json et ne provient pas d'un héritage
+                // et que la valeur de la propriété n'est ni null ni vide
                 if (
                     data.hasOwnProperty(key) &&
                     data[key] != null &&
