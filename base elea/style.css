@@ -120,6 +120,14 @@ section.about img {
     }
 }
 
+a.button-start-now {
+    border: 1px solid #F1EDE6;
+    padding: 1rem 2rem;
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+}
+
 /* ----------------- code inspiré de CodePen : https://codepen.io/WebSonick/pen/nBPZZO ----------------- */
 
 .stars_background,
