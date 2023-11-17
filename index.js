@@ -28,7 +28,11 @@ function displayElementData(id) {
             // créer une liste des propriétés (<ul> -> <li> / <ol> -> <li>)
             for (var key in data) {
                 // on vérifie que la propriété est bien celle de l'objet json et ne provient pas d'un héritage
-                if (data.hasOwnProperty(key)) {
+                if (
+                    data.hasOwnProperty(key) &&
+                    data[key] != null &&
+                    data[key] != ""
+                ) {
                     let p = document.createElement("p");
                     p.textContent = `${key} : ${data[key]}`;
                     document.body.appendChild(p);

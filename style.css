@@ -1,0 +1,291 @@
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --black: #000;
+    --white: #F1EDE6;
+}
+
+body {
+    background-color: var(--black);
+    overflow-x: hidden;
+}
+
+nav {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    background-image: linear-gradient(180deg, #000 0%, transparent 100%);
+}
+
+nav ul {
+    display: flex;
+    padding: 2rem 7rem;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+}
+
+nav div {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 20rem;
+}
+
+.title {
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+h1 {
+    color: var(--white);
+    text-align: right;
+    text-shadow: 0px 30px 50px rgba(0, 0, 0, 0.75);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12.5rem;
+    font-weight: 700;
+    line-height: 103.5%;
+    text-transform: uppercase;
+    margin: 7rem;
+}
+
+h2 {
+    color: var(--white);
+    text-shadow: 0px 30px 50px rgba(0, 0, 0, 0.75);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 6.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: 7rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    color: var(--white);
+    text-shadow: 0px 30px 50px rgba(0, 0, 0, 0.75);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    z-index: 6;
+    margin-left: 7rem;
+    margin-bottom: 1rem;
+}
+
+a.text {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--white);
+    text-decoration: none;
+    background-image: linear-gradient(180deg, transparent 95%, #ffffff 0);
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size .3s ease;
+    text-shadow: 0px 30px 50px rgba(0, 0, 0, 0.75);
+    font-size: 1.25rem;
+}
+
+a.text:hover {
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+section.about {
+    margin-top: 5rem;
+    display: flex;
+    align-items: center;
+}
+
+section.about p {
+    width: 80%;
+}
+
+section.about img {
+    animation: bouncing 10s ease infinite;
+}
+
+@keyframes bouncing {
+    0% {
+        transform: translateY(1rem);
+    }
+    50% {
+        transform: translateY(-1rem);
+    }
+    100% {
+        transform: translateY(1rem);
+    }
+}
+
+div.p-a-propos {
+    margin-bottom: 3rem;
+}
+
+a.button-start-now {
+    border: 1px solid var(--white);
+    padding: 1rem 2rem;
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    color: var(--white);
+    text-decoration: none;
+    margin-left: 7rem;
+    border-radius: 15px;
+    display: block;
+    width: fit-content;
+    margin-top: 2rem;
+    transition: 0.2s ease;
+}
+
+a.button-start-now:hover {
+    transform: translate(0.5rem, -0.5rem);
+    box-shadow: -8px 8px 0px 0px #F1EDE6;
+    transition: 0.2s ease;
+}
+
+
+/* ----------------- code inspiré de CodePen : https://codepen.io/WebSonick/pen/nBPZZO ----------------- */
+
+.stars_background,
+.twinkling_background {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+}
+
+.stars_background {
+    background: var(--black) url(./Ressources/img/stars.png) repeat top center;
+    z-index: -11;
+}
+
+.twinkling_background {
+    background: transparent url(./Ressources/img/twinkling.png) repeat top center;
+    z-index: -10;
+    animation: move-twink-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 5000px -5000px;
+    }
+}
+
+.black_opacity {
+    position: fixed;
+    z-index: -1;
+    background-color: #000;
+    opacity: 40%;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------------- système solaire ------------------ */
+
+/* animation de rotation des planètes */
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(90deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes inv-rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-90deg);
+    }
+
+    50% {
+        transform: rotate(-180deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+/* style des planètes */
+
+.sun {
+    position: absolute;
+    top: 12rem;
+    left: -25rem;
+    animation: rotation 1000s linear infinite;
+    z-index: -2;
+}
+
+.mercure {
+    position: absolute;
+    top: 12rem;
+    left: 28rem;
+    animation: inv-rotation 800s linear infinite;
+    z-index: -3;
+    opacity: 75%;
+    width: 25rem;
+}
+
+.venus {
+    position: absolute;
+    top: 12rem;
+    left: 53rem;
+    animation: rotation 500s linear infinite;
+    z-index: -4;
+    opacity: 75%;
+}
+
+.earth {
+    position: absolute;
+    top: 10rem;
+    left: 65rem;
+    animation: inv-rotation 500s linear infinite;
+    z-index: -5;
+    width: 8rem;
+}
+
+.mars {
+    position: absolute;
+    top: 10rem;
+    left: 78rem;
+    animation: rotation 300s linear infinite;
+    z-index: -6;
+    width: 6rem;
+}
+
+.jupiter {
+    position: absolute;
+    top: 6rem;
+    left: 90rem;
+    animation: inv-rotation 700s linear infinite;
+    z-index: -7;
+    width: 15rem;
+}
