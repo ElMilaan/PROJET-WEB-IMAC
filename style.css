@@ -213,7 +213,7 @@ a.button-start-now:hover {
     position: fixed;
     z-index: -1;
     background-color: #000;
-    opacity: 40%;
+    opacity: 10%;
     width: 100%;
     height: 100%;
 }
@@ -317,7 +317,7 @@ a.button-start-now:hover {
 
 /* ----------------- display.html ----------------- */
 
-section.carousel_and_title {
+main.carousel_and_title {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -357,7 +357,7 @@ svg.arrow path {
 
 svg.arrow:hover path {
     fill: var(--white50);
-    cursor: none;
+    /* cursor: none; */
     transition: 0.2s ease;
 }
 
@@ -370,8 +370,6 @@ svg.arrow-right {
     right: 7%;
 }
 
-img.arrow-right {}
-
 section.carousel {
     width: 65vw;
     height: fit-content;
@@ -381,7 +379,7 @@ section.carousel {
 
 .carousel-elements {
     display: flex;
-    gap: 2rem;
+    gap: 2vw;
     width: fit-content;
     margin-top: 2rem;
 }
