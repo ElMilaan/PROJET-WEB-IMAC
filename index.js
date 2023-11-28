@@ -1,42 +1,17 @@
-const elements = document.querySelectorAll(".element");
-let moons = document.getElementsByClassName("moon");
 let carousel = document.getElementsByClassName("carousel");
-// variable qui stock l'id de l'élément sélectionner (terre, soleil...)
-let currentElement = "";
+let title = document.title;
 
-// On ajoute un événement sur chacun des boutons des éléments du système solaire qui se déclenche quand on clique dessus
-elements.forEach((element) => {
-    element.addEventListener("click", () => {
-        // currentElement prend la valeur de l'id de l'élément sur lequel on a cliqué
-        currentElement = element.id;
-        // on retire tous les éléments de la page sauf la nav
-        document.querySelector(".title").remove();
-        elements.forEach((element) => {
-            element.remove();
-        });
-        // on appelle la fonction qui sert à afficher la page d'info sur l'élément cliqué
-        displayElementData(currentElement);
-        // A voir car marche pas
-        moons = document.getElementsByClassName("moon");
-        addEventOnMoon();
-        console.log(moons);
-    });
-});
+// on appelle la fonction qui fait fonctionner le carrousel seulement sur la bonne page
+if (title === "Les Planètes") {
+    moveCarousel();
+}
 
-function addEventOnMoon() {
-    for (let i = 0; i < moons.length; i++) {
-        moons.item(i).addEventListener("click", () => {
-            currentElement = moons.item(i)[0];
-            while (document.body.firstChild) {
-                // on retire tous les éléments de la page
-                document.body.removeChild(document.body.firstChild);
-            }
-            // on change le titre de la page -> nom de la planète
-            document.title = currentElement;
-            console.log(currentElement);
-            displayMoonData(moons.item(i)[1]);
-        });
+// on affiche les données des planètes lorsque l'on clique sur l'une d'elles
+else if (!title.includes("Système Solaire", "Les Planètes")) {
+    if (title.includes(" ")) {
+        title = lastWord(title);
     }
+    displayElementData(title);
 }
 
 function displayElementData(id) {
@@ -44,23 +19,11 @@ function displayElementData(id) {
     fetch(`https://api.le-systeme-solaire.net/rest.php/bodies/${id}`)
         // on met le résultat sous le format json supporté par JavaScript pour pouvoir manipuler la data venant de l'API
         .then((res) => res.json())
+
         // on utilise les données récupérées pour les afficher de la manière qu'on veut
         .then((data) => {
-            // on ajoute le bouton de retour à la navigation au DOM
-
-            let btn = createNode("div", "link_go_back", "", "");
-            let link = createNode(
-                "a",
-                "go_back",
-                "Retour au menu Planètes",
-                "#"
-            );
-            btn.appendChild(link);
-            document.body.appendChild(btn);
-            // créer une liste des propriétés (<ul> -> <li> / <ol> -> <li>)
+            // on liste les propriété (key -- value) en les mettant directement en forme dans le DOM
             for (var key in data) {
-                // on change le titre de la page -> nom de la planète
-                document.title = data.name;
                 // on vérifie que la propriété est bien celle de l'objet json et ne provient pas d'un héritage
                 // et que la valeur de la propriété n'est ni null ni vide
                 if (
@@ -68,27 +31,54 @@ function displayElementData(id) {
                     data[key] != null &&
                     data[key] != ""
                 ) {
-                    // on récupère le nom de chaque lune pour en faire un lien cliquable
-                    if (key == "moons") {
-                        let moonKey = document.createElement("p");
-                        moonKey.textContent = `${key} : `;
-                        document.body.appendChild(moonKey);
-                        let moonsList = document.createElement("ul");
-                        let moonValue = data[key].map(function (obj) {
+                    // premier cas spécifique : si la propriété est le nom de la planète, on met la value dans un h1
+                    if (key == "name") {
+                        let title = document.createElement("h1");
+                        title.textContent = data[key];
+                        document.body.appendChild(title);
+                    }
+
+                    // second cas spécifique : si la propriété est le nom anglais, on met la valeur dans un h3
+                    else if (key == "englishName") {
+                        let enName = document.createElement("h3");
+                        enName.textContent = data[key];
+                        document.body.appendChild(enName);
+                    }
+
+                    // troisème cas spécifique : si la propriété correspond aux lunes de la planète en question,
+                    // on affiche son nombre de lunes.
+                    else if (key == "moons") {
+                        let container = createNode("div", "property", "", "");
+                        document.body.appendChild(container);
+
+                        let moonPropertyName = createNode("p", "", "Moons", "");
+                        container.appendChild(moonPropertyName);
+
+                        let lines = createNode("div", "lines", "", "");
+                        container.appendChild(lines);
+
+                        let moonsList = data[key].map(function (obj) {
                             return [obj.moon, obj.rel];
                         });
-                        for (var val in moonValue) {
-                            let moon = document.createElement("li");
-                            moon.textContent = moonValue[val][0];
-                            moon.className = "moon";
-                            moon.id = moonValue[val][1];
-                            moonsList.appendChild(moon);
+                        let nbMoons = 0;
+                        for (var moon in moonsList) {
+                            nbMoons++;
                         }
-                        document.body.appendChild(moonsList);
-                    } else {
-                        let p = document.createElement("p");
-                        p.textContent = `${key} : ${data[key]}`;
-                        document.body.appendChild(p);
+                        let value = createNode("p", "value", nbMoons, "");
+                        container.appendChild(value);
+                    }
+
+                    // dans tous les autres cas on intègrera toujours les propriétés de la même manière dans le DOM
+                    else {
+                        let container = createNode("div", "property", "", "");
+                        let cle = createNode("p", "key", key, "");
+                        let lines = createNode("div", "lines", "", "");
+                        let value = createNode("p", "value", data[key], "");
+
+                        document.body.appendChild(container);
+                        container.appendChild(cle);
+                        container.appendChild(lines);
+                        container.appendChild(value);
                     }
                 }
             }
@@ -101,18 +91,7 @@ function displayElementData(id) {
         });
 }
 
-function displayMoonData(rel) {
-    // on fait la requête API qui sert à récupérer les données sur la lune cliqué
-    fetch(rel)
-        // on met le résultat sous le format json supporté par JavaScript pour pouvoir manipuler la data venant de l'API
-        .then((res) => res.json())
-        // on utilise les données récupérées pour les afficher de la manière qu'on veut
-        .then((data) => {
-            // vérif (à supp)
-            console.log(data);
-        });
-}
-
+// beaucoup de balises HTML sont créées donc on a écrit une fonction qui simplifie leur création
 function createNode(type, nameClass, txt, link) {
     let element = document.createElement(type);
     element.className = nameClass;
@@ -123,13 +102,15 @@ function createNode(type, nameClass, txt, link) {
     return element;
 }
 
-displayMoonData("https://api.le-systeme-solaire.net/rest.php/bodies/lune");
+// permet de récupérer le dernier mot d'un string (utile pour les noms d'astres qui ont un déterminant -> LA Terre, LE Soleil...)
+function lastWord(str) {
+    const word = str.split(" ");
+    return word[word.length - 1];
+}
 
-
-// carousel
+/******************* CAROUSEL *******************/
 
 function moveCarousel() {
-
     let count = 0;
     let position = 0;
     let carousel = document.querySelector(".carousel-elements");
@@ -138,25 +119,21 @@ function moveCarousel() {
         if (position == -(6 * (67.4 * 0.33))) {
             position = -(6 * (67.4 * 0.33));
         } else {
-            position -= (67.4 * 0.33);
+            position -= 67.4 * 0.33;
         }
-        carousel.style.transform = 'translateX(' + position + 'vw)';
-        carousel.style.transition = '0.5s ease';
+        carousel.style.transform = "translateX(" + position + "vw)";
+        carousel.style.transition = "0.5s ease";
         count += 1;
-    })
+    });
 
     document.querySelector(".arrow-left").addEventListener("click", () => {
         if (position == 0) {
             position = 0;
         } else {
-            position += (67.4 * 0.33);
+            position += 67.4 * 0.33;
         }
-        carousel.style.transform = 'translateX(' + position + 'vw)';
-        carousel.style.transition = '0.5s ease';
+        carousel.style.transform = "translateX(" + position + "vw)";
+        carousel.style.transition = "0.5s ease";
         count -= 1;
-    })
-
-
+    });
 }
-
-moveCarousel();
