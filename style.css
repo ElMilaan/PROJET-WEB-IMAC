@@ -32,6 +32,7 @@ body {
 }
 
 nav {
+    top: 0;
     position: fixed;
     z-index: 1000;
     width: 100%;
@@ -84,8 +85,7 @@ h2 {
     margin-left: 7rem;
     margin-bottom: 1rem;
 }
-
-p {
+p{
     color: var(--white);
     text-shadow: 0px 30px 50px rgba(0, 0, 0, 0.75);
     font-family: 'DM Sans', sans-serif;
@@ -93,6 +93,11 @@ p {
     font-style: normal;
     z-index: 6;
     margin-left: 7rem;
+    margin-bottom: 1rem;
+}
+.moon{
+    color: var(--white);
+    margin-left: 10rem;
     margin-bottom: 1rem;
 }
 
