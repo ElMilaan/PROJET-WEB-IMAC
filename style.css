@@ -72,7 +72,7 @@ h1.website-title {
     font-weight: 700;
     line-height: 103.5%;
     text-transform: uppercase;
-    margin: 7rem 15rem;
+    margin: 5%;
 }
 
 h2 {
@@ -85,7 +85,8 @@ h2 {
     margin-left: 7rem;
     margin-bottom: 1rem;
 }
-p{
+
+p {
     color: var(--white);
     text-shadow: 0px 30px 50px rgba(0, 0, 0, 0.75);
     font-family: 'DM Sans', sans-serif;
@@ -95,7 +96,8 @@ p{
     margin-left: 7rem;
     margin-bottom: 1rem;
 }
-.moon{
+
+.moon {
     color: var(--white);
     margin-left: 10rem;
     margin-bottom: 1rem;
@@ -321,8 +323,8 @@ main.carousel_and_title {
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    min-height: 50rem;
 }
 
 h1.title {
@@ -332,8 +334,9 @@ h1.title {
     font-size: 6.25rem;
     font-weight: 700;
     text-transform: uppercase;
-    margin-left: 7rem;
+    margin-left: 17.5vw;
     margin-bottom: 1rem;
+    margin-top: 10rem;
 }
 
 div.link_go_back {
@@ -350,6 +353,7 @@ svg.arrow {
     position: absolute;
     z-index: 2;
 }
+
 svg.arrow path {
     width: 6vw;
     transition: 0.2s ease;
@@ -385,7 +389,7 @@ section.carousel {
 }
 
 .carousel-elements .element {
-    width: calc(61vw * 0.33);
+    width: calc(((65vw - 4vw) / 3) - 2px);
     height: 25rem;
     max-height: 30rem;
     border: 1px solid var(--white);
@@ -509,6 +513,18 @@ a.button-see-more:hover {
     background-position: calc(100% - 7rem) 50%;
     /* décalage de 2rem vers la droite */
     background-size: 130%;
+}
+
+/* ----------------- responsive display.html ----------------- */
+
+@media screen and (max-width: 1400px) {
+    section.carousel {
+        width: 50vw;
+    }
+
+    .carousel-elements .element {
+        width: calc(46vw * 0.50);
+    }
 }
 
 
