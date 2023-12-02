@@ -547,3 +547,70 @@ a.go_back:hover {
     background-size: 100% 100%;
     cursor: pointer;
 }
+
+
+/* Calendrier */
+
+
+.table-container {
+	max-width: 700px;
+	margin: auto;
+	overflow: hidden;
+	border-radius: 30px;
+}
+.calendrier {
+	margin: auto;
+	border: none;
+	background: #F1EDE6;
+	font-family: 'Space Grotesk', sans-serif;
+	padding: 2em;
+	width: 100%;
+}
+.calendrier caption {
+	height: 30%;
+	background: #10100E;
+	color: #F1EDE6;
+	text-align: left;
+	padding: 10% 5% 2% 5%;
+	font-size: 3em;
+	text-transform: uppercase;
+}
+.calendrier th {
+	text-transform: uppercase;
+	color: #10100E;
+	font-weight: 500;
+}
+.calendrier td {
+	padding: 4%;
+}
+.calendrier td, .calendrier th {
+	text-align: center;
+	padding: 0.8em;
+}
+.current-header {
+	font-size: 1.5em;
+	display: block;
+	padding: 0;
+	line-height: 0.7;
+}
+.flou {
+	color: #a4a4a4;
+}
+.day {
+	display: inline-block;
+	width: 2em;
+	height: 2em;
+	line-height: 2em;
+	padding: .5em;
+	border-radius: 100%;
+	transition: all .4s;
+}
+.day:hover {
+	background: #000;
+	cursor: pointer;
+	color: #F1EDE6;
+}
+.current {
+	background: #10100E;
+	color: #F1EDE6;	
+}
