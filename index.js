@@ -111,29 +111,32 @@ function lastWord(str) {
 /******************* CAROUSEL *******************/
 
 function moveCarousel() {
+
     let count = 0;
     let position = 0;
     let carousel = document.querySelector(".carousel-elements");
+    let decalage = (65 - 4) / 3 + 2;
 
     document.querySelector(".arrow-right").addEventListener("click", () => {
-        if (position == -(6 * (67.4 * 0.33))) {
-            position = -(6 * (67.4 * 0.33));
+        if (position === -(6 * decalage)) {
+            position = -(6 * decalage);
         } else {
-            position -= 67.4 * 0.33;
+            position -= decalage;
+            count += 1;
         }
-        carousel.style.transform = "translateX(" + position + "vw)";
-        carousel.style.transition = "0.5s ease";
-        count += 1;
+        carousel.style.transform = 'translateX(calc(' + position + 'vw ))';
+        carousel.style.transition = '0.5s ease';
     });
 
     document.querySelector(".arrow-left").addEventListener("click", () => {
-        if (position == 0) {
-            position = 0;
+        if (position === 0) {
+            position += 0;
         } else {
-            position += 67.4 * 0.33;
+            position += decalage;
+            count -= 1;
         }
-        carousel.style.transform = "translateX(" + position + "vw)";
-        carousel.style.transition = "0.5s ease";
-        count -= 1;
+        carousel.style.transform = 'translateX(calc(' + position + 'vw))';
+        carousel.style.transition = '0.5s ease';
     });
+
 }
