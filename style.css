@@ -535,9 +535,15 @@ a.go_back:hover {
 
 /* Calendrier */
 
-
+.big-container {
+    margin: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
 .table-container {
 	max-width: 700px;
+    max-height: 700px;
 	margin: auto;
 	overflow: hidden;
 	border-radius: 30px;
@@ -558,6 +564,9 @@ a.go_back:hover {
 	padding: 10% 5% 2% 5%;
 	font-size: 3em;
 	text-transform: uppercase;
+}
+.calendrier tbody {
+    height: 500px;
 }
 .calendrier th {
 	text-transform: uppercase;
