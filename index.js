@@ -1,5 +1,14 @@
 let carousel = document.getElementsByClassName("carousel");
 let title = document.title;
+let hamburger = document.getElementById("hamburger");
+let navlinks = document.querySelector(".navlinks");
+
+console.log("navlinks");
+
+hamburger.addEventListener("click", () => {
+    navlinks.classList.add("open");
+})
+
 
 // on appelle la fonction qui fait fonctionner le carrousel seulement sur la bonne page
 if (title === "Les Planètes") {
@@ -7,7 +16,7 @@ if (title === "Les Planètes") {
 }
 
 // on affiche les données des planètes lorsque l'on clique sur l'une d'elles
-else if (!title.includes("Système Solaire", "Les Planètes")) {
+else if (!title.includes("Système Solaire", "Les Planètes", "Calendrier Astronomique")) {
     if (title.includes(" ")) {
         title = lastWord(title);
     }
@@ -138,5 +147,4 @@ function moveCarousel() {
         carousel.style.transform = 'translateX(calc(' + position + 'vw))';
         carousel.style.transition = '0.5s ease';
     });
-
 }
