@@ -127,8 +127,9 @@ function moveCarousel() {
     let decalage = (65 - 4) / 3 + 2;
 
     document.querySelector(".arrow-right").addEventListener("click", () => {
-        if (position === -(6 * decalage)) {
+        if (count === 6) {
             position = -(6 * decalage);
+            count += 0;
         } else {
             position -= decalage;
             count += 1;
@@ -138,8 +139,9 @@ function moveCarousel() {
     });
 
     document.querySelector(".arrow-left").addEventListener("click", () => {
-        if (position === 0) {
-            position += 0;
+        if (count === 0) {
+            position = 0;
+            count += 0;
         } else {
             position += decalage;
             count -= 1;
