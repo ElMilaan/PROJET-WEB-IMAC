@@ -623,9 +623,6 @@ a.go_back:hover {
 .popup {
     position: absolute;
     width: 250px;
-    left: auto;
-    right: auto;
-    top: auto;
     background-color: #a4a4a4;
     color: white;
     text-align: center;
