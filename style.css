@@ -713,7 +713,7 @@ a.go_back:hover {
 
     #navlinks{
         width: 25%;
-        min-width: 0;
+        min-width: 130px;
     }
 
     #navlinks li{
