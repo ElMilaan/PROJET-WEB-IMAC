@@ -615,9 +615,10 @@ a.go_back:hover {
 	color: #F1EDE6;
 }
 .evenement {
-    background: transparent url(./Ressources/img/moon.png) no-repeat right/cover;
+    background: transparent url(./Ressources/img/moon2.png) no-repeat right/cover;
     background-size: 80%;
     background-position: center;
+    background-color: transparent;
 }
 .evenement span {
     color: black;
@@ -648,6 +649,17 @@ a.go_back:hover {
     margin: 1%;
     color: #10100E;
     list-style: none;
+}
+
+@media screen and (max-width: 730px) {
+    .table-container{
+        min-width: fit-content;
+        max-width: fit-content;
+    }
+    .calendrier{
+        min-width: fit-content;
+        max-width: fit-content;
+    }
 }
 
 /************ MEDIA PAGE D'ACCUEIL *************/
