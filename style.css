@@ -588,7 +588,7 @@ a.go_back:hover {
 	text-align: center;
 	padding: 0.8em;
 }
-.current-header {
+.mois {
 	font-size: 1.5em;
 	display: block;
 	padding: 0;
@@ -613,10 +613,6 @@ a.go_back:hover {
 	background: #000;
 	cursor: pointer;
 	color: #F1EDE6;
-}
-.current {
-	background: #10100E;
-	color: #F1EDE6;	
 }
 .evenement {
     background: url(./Ressources/img/moon.png) no-repeat right/cover;
