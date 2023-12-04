@@ -640,6 +640,20 @@ a.go_back:hover {
 .evenement:hover .popup {
     visibility: visible;
 }
+.definitions {
+    width: 100%;
+    margin: 2%;
+    border-radius: 30px;
+    background-color: #F1EDE6;
+    padding: 10px;
+}
+.definitions ul{
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: left;
+    margin: 1%;
+    color: #10100E;
+    list-style: none;
+}
 
 /************ MEDIA PAGE D'ACCUEIL *************/
 
