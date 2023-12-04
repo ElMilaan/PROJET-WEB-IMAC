@@ -615,16 +615,17 @@ a.go_back:hover {
 	color: #F1EDE6;
 }
 .evenement {
-    background: url(./Ressources/img/moon.png) no-repeat right/cover;
+    background: transparent url(./Ressources/img/moon.png) no-repeat right/cover;
     background-size: 80%;
     background-position: center;
-    opacity: 80%;
+}
+.evenement span {
+    color: black;
 }
 .popup {
     position: absolute;
     width: 250px;
-    background-color: #a4a4a4;
-    color: white;
+    background-color: #10100E;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -632,6 +633,7 @@ a.go_back:hover {
 }
 .evenement:hover .popup {
     visibility: visible;
+    color: white;
 }
 .definitions {
     width: 100%;
