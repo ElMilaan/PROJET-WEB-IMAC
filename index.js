@@ -1,14 +1,12 @@
 let carousel = document.getElementsByClassName("carousel");
 let title = document.title;
 let hamburger = document.getElementById("hamburger");
-let navlinks = document.querySelector(".navlinks");
+let navlinks = document.getElementById("navlinks");
 
-console.log("navlinks");
-
+// on fait sortir la navbar quand on clique sur le menu hamburger
 hamburger.addEventListener("click", () => {
-    navlinks.classList.add("open");
-})
-
+    navlinks.classList.toggle("open");
+});
 
 // on appelle la fonction qui fait fonctionner le carrousel seulement sur la bonne page
 if (title === "Les Planètes") {
@@ -16,7 +14,13 @@ if (title === "Les Planètes") {
 }
 
 // on affiche les données des planètes lorsque l'on clique sur l'une d'elles
-else if (!title.includes("Système Solaire", "Les Planètes", "Calendrier Astronomique")) {
+else if (
+    !title.includes(
+        "Système Solaire",
+        "Les Planètes",
+        "Calendrier Astronomique"
+    )
+) {
     if (title.includes(" ")) {
         title = lastWord(title);
     }
@@ -120,7 +124,6 @@ function lastWord(str) {
 /******************* CAROUSEL *******************/
 
 function moveCarousel() {
-
     let count = 0;
     let position = 0;
     let carousel = document.querySelector(".carousel-elements");
@@ -134,8 +137,8 @@ function moveCarousel() {
             position -= decalage;
             count += 1;
         }
-        carousel.style.transform = 'translateX(calc(' + position + 'vw ))';
-        carousel.style.transition = '0.5s ease';
+        carousel.style.transform = "translateX(calc(" + position + "vw ))";
+        carousel.style.transition = "0.5s ease";
     });
 
     document.querySelector(".arrow-left").addEventListener("click", () => {
@@ -146,7 +149,7 @@ function moveCarousel() {
             position += decalage;
             count -= 1;
         }
-        carousel.style.transform = 'translateX(calc(' + position + 'vw))';
-        carousel.style.transition = '0.5s ease';
+        carousel.style.transform = "translateX(calc(" + position + "vw))";
+        carousel.style.transition = "0.5s ease";
     });
 }
