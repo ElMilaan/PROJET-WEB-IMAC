@@ -124,11 +124,20 @@ function moveCarousel() {
     let count = 0;
     let position = 0;
     let carousel = document.querySelector(".carousel-elements");
-    let decalage = (65 - 4) / 3 + 2;
+    let decalage = 0;
+    let maxCount = 0;
+    if (window.innerWidth > 1400) {
+        decalage = (65 - 4) / 3 + 2;
+        maxCount = 6;
+    }
+    else if (window.innerWidth > 1000 && window.innerWidth < 1400) {
+        decalage = (50 - 4) / 2 + 2;
+        maxCount = 7;
+    }
 
     document.querySelector(".arrow-right").addEventListener("click", () => {
-        if (count === 6) {
-            position = -(6 * decalage);
+        if (count === maxCount) {
+            position = -(maxCount * decalage);
             count += 0;
         } else {
             position -= decalage;
