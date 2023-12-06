@@ -15,11 +15,9 @@ if (title === "Les Planètes") {
 
 // on affiche les données des planètes lorsque l'on clique sur l'une d'elles
 else if (
-    !title.includes(
-        "Système Solaire",
-        "Les Planètes",
-        "Calendrier Astronomique"
-    )
+    title != "Système Solaire" &&
+    title != "Les Planètes" &&
+    title != "Calendrier Astronomique"
 ) {
     if (title.includes(" ")) {
         title = lastWord(title);
@@ -47,7 +45,7 @@ function displayElementData(id) {
                     data[key] != ""
                 ) {
                     // premier cas spécifique : si la propriété est le nom de la planète, on met la value dans un h1
-                    if (key == "name") {
+                    if (key === "name") {
                         let title = document.createElement("h1");
                         title.classList.add("display-title-fr");
                         title.textContent = data[key].toUpperCase();
@@ -55,7 +53,7 @@ function displayElementData(id) {
                     }
 
                     // second cas spécifique : si la propriété est le nom anglais, on met la valeur dans un h3
-                    else if (key == "englishName") {
+                    else if (key === "englishName") {
                         let enName = document.createElement("h3");
                         enName.classList.add("display-title-en");
                         enName.textContent = data[key].toUpperCase();
@@ -87,16 +85,20 @@ function displayElementData(id) {
                         // Nous faisons donc une petite manipulation pour afficher cela correctement sous la forme 10exp(n)
                         // Nous n'utilisons pas la fonction Math.pow, car dans le cas du Soleil par exemple, sa masse dépasse le maxInt possible.
                         else if (key === "vol") {
-                            cle = "Volum";
-                            value = `${data[key].volValue} x 10exp(${data[key].volExponent})`;
+                            cle = "volum";
+                            value = `${data[key].volValue} x 10exp(${
+                                data[key].volExponent
+                            }) ${getUnit(key)}`;
                         } else if (key === "mass") {
-                            cle = "Mass";
-                            value = `${data[key].massValue} x 10exp(${data[key].massExponent})`;
+                            cle = "mass";
+                            value = `${data[key].massValue} x 10exp(${
+                                data[key].massExponent
+                            }) ${getUnit(key)}`;
                         }
                         // Sinon dans les autres cas, les valeurs retournées par l'API ne nécessitent pas de traitement
                         else {
                             cle = key;
-                            value = data[key];
+                            value = `${data[key]} ${getUnit(key)}`;
                         }
 
                         // On injecte ces valeurs dans des balises HTML, puis dans le DOM
@@ -145,6 +147,36 @@ function lastWord(str) {
 // permet de mettre la première lettre d'un string en majuscule
 function UpperFirstLetter(str) {
     return str.substring(0, 1).toUpperCase() + str.substring(1);
+}
+
+// permet de retourner l'unité correspondant à la propriété choisie
+function getUnit(property) {
+    if (
+        property === "semimajorAxis" ||
+        property === "perihelion" ||
+        property === "aphelion" ||
+        property === "meanRadius" ||
+        property === "equaRadius" ||
+        property === "polarRadius" ||
+        property === "dimension"
+    )
+        return "km";
+    else if (
+        property === "inclination" ||
+        property === "mainAnomaly" ||
+        property === "argPeriapsis" ||
+        property === "longAscNode"
+    )
+        return "°";
+    else if (property === "mass") return "kg";
+    else if (property === "vol") return "km³";
+    else if (property === "density") return "g.cm³";
+    else if (property === "gravity") return "m.s⁻²";
+    else if (property === "escape") return "m.s⁻¹";
+    else if (property === "sideralOrbit") return "jours";
+    else if (property === "sideralRotation") return "heures";
+    else if (property === "avgTemp") return "K";
+    return "";
 }
 
 /******************* CAROUSEL *******************/
