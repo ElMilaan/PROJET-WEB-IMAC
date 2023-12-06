@@ -41,62 +41,83 @@ function displayElementData(id) {
                 // et que la valeur de la propriété n'est ni null ni vide
                 if (
                     data.hasOwnProperty(key) &&
+                    key != "id" &&
+                    key != "isPlanet" &&
                     data[key] != null &&
                     data[key] != ""
                 ) {
                     // premier cas spécifique : si la propriété est le nom de la planète, on met la value dans un h1
                     if (key == "name") {
                         let title = document.createElement("h1");
-                        title.textContent = data[key];
+                        title.classList.add("display-title-fr");
+                        title.textContent = data[key].toUpperCase();
                         document.body.appendChild(title);
                     }
 
                     // second cas spécifique : si la propriété est le nom anglais, on met la valeur dans un h3
                     else if (key == "englishName") {
                         let enName = document.createElement("h3");
-                        enName.textContent = data[key];
+                        enName.classList.add("display-title-en");
+                        enName.textContent = data[key].toUpperCase();
                         document.body.appendChild(enName);
                     }
 
-                    // troisème cas spécifique : si la propriété correspond aux lunes de la planète en question,
-                    // on affiche son nombre de lunes.
-                    else if (key == "moons") {
-                        let container = createNode("div", "property", "", "");
-                        document.body.appendChild(container);
-
-                        let moonPropertyName = createNode("p", "", "Moons", "");
-                        container.appendChild(moonPropertyName);
-
-                        let lines = createNode("div", "lines", "", "");
-                        container.appendChild(lines);
-
-                        let moonsList = data[key].map(function (obj) {
-                            return [obj.moon, obj.rel];
-                        });
-                        let nbMoons = 0;
-                        for (var moon in moonsList) {
-                            nbMoons++;
-                        }
-                        let value = createNode("p", "value", nbMoons, "");
-                        container.appendChild(value);
-                    }
-
-                    // dans tous les autres cas on intègrera toujours les propriétés de la même manière dans le DOM
+                    // Sinon on répète le meme paterne -> nom de la propriété dans un p, valeur dans un autre, le tout dans une div
                     else {
+                        // on déclare les variables dans lesquelles seront stockées la clé de la propriété et sa valeur
+                        let cle;
+                        let value;
+                        // pour récupérer les lunes nous avons décidé d'afficher leur nombre pour chaque planète qui en possède
+                        // l'API nous retourne une liste de lunes (d'objets), donc nous manipulons cette liste pour compter les lunes
+                        if (key === "moons") {
+                            // on définit le nom de la propriété à afficher dans le DOM
+                            cle = "Moons";
+                            // on récupère toutes les lunes (des objets JSON) pour pouvoir les compter ensuite
+                            let moonsList = data[key].map(function (obj) {
+                                return [obj.moon, obj.rel];
+                            });
+                            let nbMoons = 0;
+                            for (var moon in moonsList) {
+                                nbMoons++;
+                            }
+                            // On définit la valeur à afficher (le nombre de lune(s) de la planète)
+                            value = nbMoons;
+                        }
+                        // dans les cas du volume et de la masse, l'API nous retourne un objet avec deux attributs : value et exponent
+                        // Nous faisons donc une petite manipulation pour afficher cela correctement sous la forme 10exp(n)
+                        // Nous n'utilisons pas la fonction Math.pow, car dans le cas du Soleil par exemple, sa masse dépasse le maxInt possible.
+                        else if (key === "vol") {
+                            cle = "Volum";
+                            value = `${data[key].volValue} x 10exp(${data[key].volExponent})`;
+                        } else if (key === "mass") {
+                            cle = "Mass";
+                            value = `${data[key].massValue} x 10exp(${data[key].massExponent})`;
+                        }
+                        // Sinon dans les autres cas, les valeurs retournées par l'API ne nécessitent pas de traitement
+                        else {
+                            cle = key;
+                            value = data[key];
+                        }
+
+                        // On injecte ces valeurs dans des balises HTML, puis dans le DOM
                         let container = createNode("div", "property", "", "");
-                        let cle = createNode("p", "key", key, "");
-                        let lines = createNode("div", "lines", "", "");
-                        let value = createNode("p", "value", data[key], "");
+                        let cleNode = createNode(
+                            "p",
+                            "key",
+                            UpperFirstLetter(cle),
+                            ""
+                        );
+                        let linesNode = createNode("div", "lines", "", "");
+                        let valueNode = createNode("p", "value", value, "");
 
                         document.body.appendChild(container);
-                        container.appendChild(cle);
-                        container.appendChild(lines);
-                        container.appendChild(value);
+                        container.appendChild(cleNode);
+                        container.appendChild(linesNode);
+                        container.appendChild(valueNode);
                     }
                 }
             }
         })
-
         // si une erreur survient lors de la création de la nouvelle page d'affichage (après le dernier "then"),
         // l'erreur s'affiche dans la console.
         .catch((err) => {
@@ -121,6 +142,11 @@ function lastWord(str) {
     return word[word.length - 1];
 }
 
+// permet de mettre la première lettre d'un string en majuscule
+function UpperFirstLetter(str) {
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
+}
+
 /******************* CAROUSEL *******************/
 
 function moveCarousel() {
@@ -132,8 +158,7 @@ function moveCarousel() {
     if (window.innerWidth > 1400) {
         decalage = (65 - 4) / 3 + 2;
         maxCount = 6;
-    }
-    else if (window.innerWidth > 1000 && window.innerWidth < 1400) {
+    } else if (window.innerWidth > 1000 && window.innerWidth < 1400) {
         decalage = (50 - 4) / 2 + 2;
         maxCount = 7;
     }
