@@ -5,6 +5,10 @@
     margin: 0;
 }
 
+*{
+    font-family: 'Space Grotesk', sans-serif;
+}
+
 :root {
     --black: #000;
     --white: #F1EDE6;
@@ -71,7 +75,6 @@ h1.website-title {
     color: var(--white);
     text-align: right;
     text-shadow: 0px 30px 50px rgba(0, 0, 0, 0.75);
-    font-family: 'Space Grotesk', sans-serif;
     font-size: 12.5rem;
     font-weight: 700;
     line-height: 103.5%;
@@ -82,7 +85,6 @@ h1.website-title {
 h2 {
     color: var(--white);
     text-shadow: 0px 30px 50px rgba(0, 0, 0, 0.75);
-    font-family: 'Space Grotesk', sans-serif;
     font-size: 6.25rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -159,7 +161,6 @@ div.p-a-propos {
 a.button-start-now {
     border: 1px solid var(--white);
     padding: 1rem 2rem;
-    font-family: 'Space Grotesk', sans-serif;
     text-transform: uppercase;
     font-size: 2.5rem;
     color: var(--white);
@@ -332,7 +333,6 @@ main.carousel_and_title {
 h1.title {
     color: var(--white);
     text-shadow: 0px 30px 50px rgba(0, 0, 0, 0.75);
-    font-family: 'Space Grotesk', sans-serif;
     font-size: 6.25rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -415,7 +415,6 @@ section.carousel {
 
 .carousel-elements .element .text h2 {
     text-shadow: 0px 30px 50px rgba(0, 0, 0, 0.75);
-    font-family: 'Space Grotesk', sans-serif;
     font-size: 2.8rem;
     font-weight: 700;
     line-height: 103.5%;
@@ -426,7 +425,6 @@ section.carousel {
 a.button-see-more {
     border: 1px solid var(--white);
     padding: 1rem 2rem;
-    font-family: 'Space Grotesk', sans-serif;
     text-transform: uppercase;
     font-size: 1rem;
     color: var(--white);
@@ -487,7 +485,7 @@ a.button-see-more:hover {
 }
 
 .carousel .element#saturn {
-    background: url(./Ressources/img/saturn.png) no-repeat right/cover;
+    background: url(./Ressources/img/saturne.png) no-repeat right/cover;
     background-position: calc(100% - 2rem);
     /* décalage de 2rem vers la droite */
     background-size: 200%;
@@ -497,14 +495,14 @@ a.button-see-more:hover {
     background: url(./Ressources/img/uranus.png) no-repeat right/cover;
     background-position: calc(100% - 7rem);
     /* décalage de 2rem vers la droite */
-    background-size: 130%;
+    background-size: 140%;
 }
 
 .carousel .element#neptune {
     background: url(./Ressources/img/neptune.png) no-repeat right/cover;
     background-position: calc(100% - 7rem);
     /* décalage de 2rem vers la droite */
-    background-size: 100%;
+    background-size: 110%;
 }
 
 /* ----------------- responsive display.html ----------------- */
@@ -553,7 +551,7 @@ a.button-see-more:hover {
 
 /* ----------------- chaque planètes dans display.html ----------------- */
 
-a.go_back {
+/* a.go_back {
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
     color: var(--white);
@@ -569,7 +567,7 @@ a.go_back {
 a.go_back:hover {
     background-size: 100% 100%;
     cursor: pointer;
-}
+} */
 
 
 /* Calendrier */
@@ -593,7 +591,6 @@ a.go_back:hover {
     margin: auto;
     border: none;
     background: #F1EDE6;
-    font-family: 'Space Grotesk', sans-serif;
     padding: 2em;
     width: 100%;
 }
@@ -694,7 +691,6 @@ a.go_back:hover {
 }
 
 .definitions ul {
-    font-family: 'Space Grotesk', sans-serif;
     text-align: left;
     margin: 1%;
     color: #10100E;
@@ -817,5 +813,78 @@ a.go_back:hover {
         font-size: 5rem;
         text-align: center;
         margin: 50% 0;
+    }
+}
+
+/* *************** DISPLAY PLANETS PROPERTY *************** */
+
+.img-planet{
+    position: absolute;
+    width: calc(50vw + 100vw - 90%);
+    left: -30%;
+    top: 30%;
+}
+
+.block-property{
+    width: 40vw;
+    min-width: 500px;
+    padding: 0 5% 2% 5%;
+    border-radius: 25px;
+    border: solid 2px var(--white);
+    margin: 200px 5% 5% 150px;
+    float: right;
+    align-items: center;
+}
+
+.block-title{
+    background-color: var(--black);
+    width: fit-content;
+    padding: 0 3%;
+    position: relative;
+    left: 45%;
+    top: -30px;
+    color: var(--white);
+    text-align: right;
+}
+
+.display-title-fr{
+    font-size: 3rem;
+}
+
+.property{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lines {
+    /* A FAIRE (les petites lignes pointillées) */
+}
+
+@media screen and (max-width: 1000px) {
+    .img-planet{
+        display: none;
+    }
+
+    .block-property{
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60vw;
+        min-width: 300px;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .block-title{
+        left: 45%;
+    }
+
+    .display-title-fr{
+        font-size: 2rem;
+    }
+
+    .value, .key{
+        font-size: 0.9rem;
     }
 }

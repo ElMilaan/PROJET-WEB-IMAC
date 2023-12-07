@@ -19,13 +19,18 @@ else if (
     title != "Les Planètes" &&
     title != "Calendrier Astronomique"
 ) {
+    let blockProperty = createNode("div", "block-property");
+    let blockTitle = createNode("div", "block-title");
+    blockProperty.appendChild(blockTitle);
+    document.body.appendChild(blockProperty);
     if (title.includes(" ")) {
         title = lastWord(title);
     }
-    displayElementData(title);
+    displayElementData(title, blockProperty);
 }
 
-function displayElementData(id) {
+// permet d'afficher les données d'une planète choisie
+function displayElementData(id, globalContainer) {
     // on fait la requête API qui sert à récupérer les données sur l'élément cliqué
     fetch(`https://api.le-systeme-solaire.net/rest.php/bodies/${id}`)
         // on met le résultat sous le format json supporté par JavaScript pour pouvoir manipuler la data venant de l'API
@@ -41,23 +46,29 @@ function displayElementData(id) {
                     data.hasOwnProperty(key) &&
                     key != "id" &&
                     key != "isPlanet" &&
+                    key != "discoveredBy" &&
+                    key != "discoveryDate" &&
                     data[key] != null &&
                     data[key] != ""
                 ) {
                     // premier cas spécifique : si la propriété est le nom de la planète, on met la value dans un h1
                     if (key === "name") {
-                        let title = document.createElement("h1");
-                        title.classList.add("display-title-fr");
-                        title.textContent = data[key].toUpperCase();
-                        document.body.appendChild(title);
+                        let title = createNode(
+                            "h1",
+                            "display-title-fr",
+                            data[key].toUpperCase()
+                        );
+                        globalContainer.firstChild.appendChild(title);
                     }
 
                     // second cas spécifique : si la propriété est le nom anglais, on met la valeur dans un h3
                     else if (key === "englishName") {
-                        let enName = document.createElement("h3");
-                        enName.classList.add("display-title-en");
-                        enName.textContent = data[key].toUpperCase();
-                        document.body.appendChild(enName);
+                        let enName = createNode(
+                            "h3",
+                            "display-title-en",
+                            data[key].toUpperCase()
+                        );
+                        globalContainer.firstChild.appendChild(enName);
                     }
 
                     // Sinon on répète le meme paterne -> nom de la propriété dans un p, valeur dans un autre, le tout dans une div
@@ -65,6 +76,7 @@ function displayElementData(id) {
                         // on déclare les variables dans lesquelles seront stockées la clé de la propriété et sa valeur
                         let cle;
                         let value;
+
                         // pour récupérer les lunes nous avons décidé d'afficher leur nombre pour chaque planète qui en possède
                         // l'API nous retourne une liste de lunes (d'objets), donc nous manipulons cette liste pour compter les lunes
                         if (key === "moons") {
@@ -81,6 +93,7 @@ function displayElementData(id) {
                             // On définit la valeur à afficher (le nombre de lune(s) de la planète)
                             value = nbMoons;
                         }
+
                         // dans les cas du volume et de la masse, l'API nous retourne un objet avec deux attributs : value et exponent
                         // Nous faisons donc une petite manipulation pour afficher cela correctement sous la forme 10exp(n)
                         // Nous n'utilisons pas la fonction Math.pow, car dans le cas du Soleil par exemple, sa masse dépasse le maxInt possible.
@@ -95,24 +108,24 @@ function displayElementData(id) {
                                 data[key].massExponent
                             }) ${getUnit(key)}`;
                         }
+
                         // Sinon dans les autres cas, les valeurs retournées par l'API ne nécessitent pas de traitement
                         else {
                             cle = key;
                             value = `${data[key]} ${getUnit(key)}`;
                         }
 
-                        // On injecte ces valeurs dans des balises HTML, puis dans le DOM
-                        let container = createNode("div", "property", "", "");
+                        // On injecte ces valeurs dans des balises HTML, puis dans le DOM en suivant l'arborescence que l'on souhaite
+                        let container = createNode("div", "property");
                         let cleNode = createNode(
                             "p",
                             "key",
-                            UpperFirstLetter(cle),
-                            ""
+                            UpperFirstLetter(cle)
                         );
-                        let linesNode = createNode("div", "lines", "", "");
-                        let valueNode = createNode("p", "value", value, "");
+                        let linesNode = createNode("div", "lines");
+                        let valueNode = createNode("p", "value", value);
 
-                        document.body.appendChild(container);
+                        globalContainer.appendChild(container);
                         container.appendChild(cleNode);
                         container.appendChild(linesNode);
                         container.appendChild(valueNode);
@@ -120,6 +133,7 @@ function displayElementData(id) {
                 }
             }
         })
+
         // si une erreur survient lors de la création de la nouvelle page d'affichage (après le dernier "then"),
         // l'erreur s'affiche dans la console.
         .catch((err) => {
