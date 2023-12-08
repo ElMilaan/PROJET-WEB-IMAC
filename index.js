@@ -235,6 +235,6 @@ function moveCarousel() {
             count -= 1;
         }
         carousel.style.transform = "translateX(calc(" + position + "vw))";
-        carousel.style.transition = "0.5s ease";
+        carousel.style.transition = "0.5s ease"; 
     });
 }

@@ -883,10 +883,25 @@ a.go_back:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1rem;
+}
+
+.property .key {
+    min-width: fit-content;
+    margin: 0;
+}
+
+.property .value {
+    min-width: fit-content;
+    margin: 0;
 }
 
 .lines {
-    /* A FAIRE (les petites lignes pointillées) */
+    width: 100%;
+    border-bottom: dashed 1px var(--white);
+    margin: 0 1rem;
+    stroke-linecap: round;
+    stroke-dasharray: 13 13;
 }
 
 @media screen and (max-width: 1000px) {
