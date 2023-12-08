@@ -392,7 +392,7 @@ section.carousel {
 
 .carousel-elements .element {
     width: calc(((65vw - 4vw) / 3) - 2px);
-    height: 25rem;
+    height: 75vh;
     max-height: 30rem;
     border: 1px solid var(--white);
     border-radius: 15px;
@@ -545,8 +545,20 @@ a.button-see-more:hover {
     }
 
     h1.title {
-        font-size: 5rem;
-        padding-right: 7rem;
+        font-size: 4rem;
+        margin-left: 10vw;
+    }
+
+    section.carousel {
+        width: 75vw;
+    }
+
+    .carousel-elements .element {
+        width: 74vw;
+    }
+
+    .carousel-elements .element {
+        height: 55vh;
     }
 }
 
@@ -702,15 +714,17 @@ a.go_back:hover {
 }
 
 @media screen and (max-width: 730px) {
-    .table-container{
+    .table-container {
         min-width: fit-content;
         max-width: fit-content;
     }
-    .calendrier{
+
+    .calendrier {
         min-width: fit-content;
         max-width: fit-content;
     }
-    .big-container{
+
+    .big-container {
         min-width: fit-content;
         max-width: fit-content;
     }
@@ -730,6 +744,7 @@ a.go_back:hover {
 }
 
 @media screen and (max-width: 1000px) {
+
     nav ul {
         margin: 30px;
         padding: 0;
@@ -755,6 +770,7 @@ a.go_back:hover {
 }
 
 @media screen and (max-width: 730px) {
+
     nav ul>div {
         position: absolute;
         flex-direction: column;
@@ -766,18 +782,18 @@ a.go_back:hover {
         padding: 0 5%;
     }
 
-    #navlinks{
+    #navlinks {
         width: 25%;
         min-width: 0;
     }
 
-    #navlinks li{
+    #navlinks li {
         position: relative;
         margin-top: 20px;
         top: 100px;
     }
 
-    .open{
+    .open {
         right: 0;
         padding-bottom: 100vh;
     }
@@ -813,9 +829,21 @@ a.go_back:hover {
         transform: translateY(-7px);
     }
 
-    h1.website-title{
-        font-size: 5rem;
+    h1.website-title {
+        font-size: 4rem;
         text-align: center;
         margin: 50% 0;
+    }
+
+    .about .text>h2 {
+        font-size: 2rem;
+    }
+
+    .about .p-a-propos>p {
+        font-size: 1rem;
+    }
+
+    a.button-start-now {
+        font-size: 1.5rem;
     }
 }
