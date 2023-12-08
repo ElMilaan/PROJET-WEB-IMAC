@@ -205,13 +205,12 @@ function moveCarousel() {
     if (window.innerWidth > 1400) {
         decalage = (65 - 4) / 3 + 2;
         maxCount = 6;
-    }
-    else if (window.innerWidth > 1000 && window.innerWidth <= 1400) {
+    } else if (window.innerWidth > 1000 && window.innerWidth <= 1400) {
         decalage = (50 - 4) / 2 + 2;
         maxCount = 7;
     } else if (window.innerWidth <= 1000) {
         decalage = 74 + 2.5;
-        maxCount = 7;
+        maxCount = 8;
     }
 
     document.querySelector(".arrow-right").addEventListener("click", () => {
@@ -235,6 +234,6 @@ function moveCarousel() {
             count -= 1;
         }
         carousel.style.transform = "translateX(calc(" + position + "vw))";
-        carousel.style.transition = "0.5s ease"; 
+        carousel.style.transition = "0.5s ease";
     });
 }
