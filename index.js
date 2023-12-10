@@ -99,14 +99,12 @@ function displayElementData(id, globalContainer) {
                         // Nous n'utilisons pas la fonction Math.pow, car dans le cas du Soleil par exemple, sa masse dépasse le maxInt possible.
                         else if (key === "vol") {
                             cle = "volum";
-                            value = `${data[key].volValue} x 10exp(${
-                                data[key].volExponent
-                            }) ${getUnit(key)}`;
+                            value = `${data[key].volValue} x 10exp(${data[key].volExponent
+                                }) ${getUnit(key)}`;
                         } else if (key === "mass") {
                             cle = "mass";
-                            value = `${data[key].massValue} x 10exp(${
-                                data[key].massExponent
-                            }) ${getUnit(key)}`;
+                            value = `${data[key].massValue} x 10exp(${data[key].massExponent
+                                }) ${getUnit(key)}`;
                         }
 
                         // Sinon dans les autres cas, les valeurs retournées par l'API ne nécessitent pas de traitement
@@ -196,12 +194,19 @@ function getUnit(property) {
 /******************* CAROUSEL *******************/
 
 function moveCarousel() {
+
+    // compteur pour calculer le nb de déplacements
     let count = 0;
+
+    // position initiale du carousel
     let position = 0;
+
+    // on récupère le carousel et on définit le décalage en fonction de la taille de l'écran
     let carousel = document.querySelector(".carousel-elements");
+
+    // on définit le nombre de déplacements max et la taille du déplacement en fonction de la taille de l'écran
     let decalage = 0;
     let maxCount = 0;
-
     if (window.innerWidth > 1400) {
         decalage = (65 - 4) / 3 + 2;
         maxCount = 6;
@@ -213,7 +218,10 @@ function moveCarousel() {
         maxCount = 8;
     }
 
+    // si on clique sur la flèche de droite, on déplace le carousel vers la droite de déplacement en modifiant sa position
     document.querySelector(".arrow-right").addEventListener("click", () => {
+
+        // on vérifie que le nombre de déplacements n'a pas atteint le max ou min (0)
         if (count === maxCount) {
             position = -(maxCount * decalage);
             count += 0;
@@ -225,7 +233,10 @@ function moveCarousel() {
         carousel.style.transition = "0.5s ease";
     });
 
+    // si on clique sur la flèche de gauche, on déplace le carousel vers la gauche de déplacement en modifiant sa position
     document.querySelector(".arrow-left").addEventListener("click", () => {
+
+        // on vérifie que le nombre de déplacements n'a pas atteint le max ou min (0)
         if (count === 0) {
             position = 0;
             count += 0;
