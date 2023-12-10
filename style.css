@@ -728,6 +728,7 @@ a.button-see-more:hover {
 
 .calendrier td {
     padding: 4%;
+    color: #10100E;
 }
 
 .calendrier td,
@@ -808,9 +809,10 @@ a.button-see-more:hover {
     list-style: none;
 }
 
+
 /************ Responsive Page Calendrier *************/
 
-@media screen and (max-width: 730px) {
+@media screen and (min-width: 375px) and (max-width: 730px) {
     .table-container {
         min-width: fit-content;
         max-width: fit-content;
@@ -927,3 +929,7 @@ a.button-see-more:hover {
         font-size: 0.9rem;
     }
 }
+
+
+
+
