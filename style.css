@@ -7,7 +7,6 @@
 
 * {
     font-family: 'Space Grotesk', sans-serif;
-    color: var(--white);
 }
 
 :root {
@@ -63,6 +62,7 @@ nav ul {
     align-items: center;
     justify-content: space-between;
     min-width: 20rem;
+    color: var(--white);
 }
 
 #hamburger {
@@ -150,6 +150,7 @@ nav ul {
     height: 100vh;
     display: flex;
     flex-direction: column-reverse;
+    color: var(--white);
 }
 
 h1.website-title {
@@ -160,6 +161,7 @@ h1.website-title {
     line-height: 103.5%;
     text-transform: uppercase;
     margin: 5%;
+    color: var(--white);
 }
 
 h2 {
@@ -168,6 +170,7 @@ h2 {
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 1rem;
+    color: var(--white);
 }
 
 p {
@@ -178,6 +181,7 @@ p {
     z-index: 6;
     margin-bottom: 1rem;
     text-align: justify;
+    color: var(--white);
 }
 
 a.text {
@@ -190,6 +194,7 @@ a.text {
     text-shadow: 0px 30px 50px rgba(0, 0, 0, 0.75);
     font-size: 1.25rem;
     font-weight: 300;
+    color: var(--white);
 }
 
 a.text:hover {
@@ -239,6 +244,7 @@ a.button-start-now {
     width: fit-content;
     transition: 0.2s ease;
     margin: 0 auto 50px auto;
+    color: var(--white);
 }
 
 a.button-start-now:hover {
@@ -447,6 +453,7 @@ main.carousel_and_title {
     display: flex;
     flex-direction: column;
     min-height: 50rem;
+    color: var(--white);
 }
 
 h1.title {
@@ -457,6 +464,7 @@ h1.title {
     margin-left: 17.5vw;
     margin-bottom: 1rem;
     margin-top: 10rem;
+    color: var(--white);
 }
 
 div.link_go_back {
@@ -529,6 +537,7 @@ section.carousel {
     backdrop-filter: blur(15px);
     transform: translateY(1.5rem);
     padding: 1.5rem;
+    color: var(--white);
 }
 
 .carousel-elements .element .text h2 {
@@ -538,6 +547,7 @@ section.carousel {
     line-height: 103.5%;
     text-transform: uppercase;
     margin: 0;
+    color: var(--white);
 }
 
 a.button-see-more {
@@ -551,6 +561,7 @@ a.button-see-more {
     width: fit-content;
     transition: 0.2s ease;
     margin-top: 0.5rem;
+    color: var(--white);
 }
 
 a.button-see-more:hover {
@@ -823,6 +834,7 @@ a.button-see-more:hover {
     position: relative;
     top: 150px;
     left: 7rem;
+    color: var(--white);
 }
 
 .img-planet {
@@ -857,6 +869,7 @@ img.saturn {
     left: 45%;
     top: -30px;
     text-align: right;
+    color: var(--white);
 }
 
 .display-title-fr {
