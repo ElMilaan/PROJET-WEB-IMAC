@@ -31,7 +31,7 @@ body {
     animation-fill-mode: forwards;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
@@ -349,7 +349,6 @@ a.button-start-now:hover {
     animation: inv-rotation 800s linear infinite;
     z-index: -3;
     opacity: 75%;
-    width: 25rem;
 }
 
 .venus {
@@ -367,7 +366,6 @@ a.button-start-now:hover {
     left: 65rem;
     animation: inv-rotation 500s linear infinite;
     z-index: -5;
-    width: 8rem;
 }
 
 .mars {
@@ -376,7 +374,6 @@ a.button-start-now:hover {
     left: 78rem;
     animation: rotation 300s linear infinite;
     z-index: -6;
-    width: 6rem;
 }
 
 .jupiter {
@@ -385,7 +382,6 @@ a.button-start-now:hover {
     left: 90rem;
     animation: inv-rotation 700s linear infinite;
     z-index: -7;
-    width: 15rem;
 }
 
 /************ Responsive Page D'accueil *************/
@@ -564,66 +560,58 @@ a.button-see-more:hover {
 }
 
 .carousel .element#sun {
-    background: url(./Ressources/img/sun.png) no-repeat right/cover;
-    background-position: calc(100% - 7rem);
-    /* décalage de 2rem vers la droite */
-    background-size: 150%;
+    background: url(./Ressources/img/medium/sun.png) no-repeat right/cover;
+    background-position: calc(100% - 1rem);
+    background-size: 160%;
 }
 
 .carousel .element#mercury {
-    background: url(./Ressources/img/mercure.png) no-repeat right/cover;
-    background-position: calc(100% - 7rem);
-    /* décalage de 2rem vers la droite */
-    background-size: 110%;
+    background: url(./Ressources/img/medium/mercure.png) no-repeat right/cover;
+    background-position: calc(100% - 3rem);
+    background-size: 130%;
 }
 
 .carousel .element#venus {
-    background: url(./Ressources/img/venus.png) no-repeat right/cover;
-    background-position: calc(100% - 7rem);
-    /* décalage de 2rem vers la droite */
-    background-size: 100%;
+    background: url(./Ressources/img/medium/venus.png) no-repeat right/cover;
+    background-position: calc(100% - 3rem);
+    background-size: 130%;
 }
 
 .carousel .element#earth {
-    background: url(./Ressources/img/earth.png) no-repeat right/cover;
-    background-position: calc(100% - 7rem);
-    /* décalage de 2rem vers la droite */
-    background-size: 120%;
+    background: url(./Ressources/img/medium/earth.png) no-repeat right/cover;
+    background-position: calc(100% - 3rem);
+    background-size: 130%;
 }
 
 .carousel .element#mars {
-    background: url(./Ressources/img/mars.png) no-repeat right/cover;
-    background-position: calc(100% - 7rem);
-    /* décalage de 2rem vers la droite */
+    background: url(./Ressources/img/medium/mars.png) no-repeat right/cover;
+    background-position: calc(100% - 3rem);
     background-size: 130%;
 }
 
 .carousel .element#jupiter {
-    background: url(./Ressources/img/jupiter.png) no-repeat right/cover;
-    background-position: calc(100% - 7rem);
-    /* décalage de 2rem vers la droite */
+    background: url(./Ressources/img/medium/jupiter.png) no-repeat right/cover;
+    background-position: calc(100% - 3rem);
     background-size: 130%;
 }
 
 .carousel .element#saturn {
-    background: url(./Ressources/img/saturne.png) no-repeat right/cover;
-    background-position: calc(100% - 2rem);
-    /* décalage de 2rem vers la droite */
-    background-size: 200%;
+    background: url(./Ressources/img/medium/saturne.png) no-repeat right/cover;
+    background-position: calc(100% + 10rem);
+    background-size: 300%;
 }
 
 .carousel .element#uranus {
-    background: url(./Ressources/img/uranus.png) no-repeat right/cover;
-    background-position: calc(100% - 7rem);
-    /* décalage de 2rem vers la droite */
-    background-size: 140%;
+    background: url(./Ressources/img/medium/uranus.png) no-repeat right/cover;
+    background-position: calc(100% - 3rem);
+    background-size: 130%;
 }
 
 .carousel .element#neptune {
-    background: url(./Ressources/img/neptune.png) no-repeat right/cover;
+    background: url(./Ressources/img/medium/neptune.png) no-repeat right/cover;
     background-position: calc(100% - 7rem);
     /* décalage de 2rem vers la droite */
-    background-size: 110%;
+    background-size: 130%;
 }
 
 /* ****************** Responsive Page Display (les planètes) ****************** */
@@ -829,7 +817,7 @@ a.button-see-more:hover {
 
 /* *************** PAGE D'AFFICHAGE D'UNE PLANETE *************** */
 
-.btn-back{
+.btn-back {
     position: relative;
     top: 150px;
     left: 7rem;
@@ -840,7 +828,13 @@ a.button-see-more:hover {
     width: calc(50vw + 100vw - 90%);
     left: -30%;
     top: 30%;
+    animation: rotation 1000s linear infinite;
 }
+
+img.saturn {
+    animation: none !important;
+}
+
 
 .block-property {
     width: 40vw;
@@ -895,7 +889,7 @@ a.button-see-more:hover {
 /* *************** Responsive Page D'affichage D'une Planète *************** */
 
 @media screen and (max-width: 1000px) {
-    .btn-back{
+    .btn-back {
         left: 17%;
     }
 
